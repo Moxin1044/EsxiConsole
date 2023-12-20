@@ -84,7 +84,7 @@ def get_esxi_machines_screenshot(vm_name):
         response = requests.get(screenshot_url, verify=False, auth=auth)
         Disconnect(si)
         if response.status_code == 200:
-            add = os.path.dirname(os.path.dirname(os.path.abspath(__file__))) + '\\log\\screenhost\\' + str(target_vm._moId) + 'screenshot.png'
+            add = os.path.dirname(os.path.dirname(os.path.abspath(__file__))) + '/log/screenhost/' + str(target_vm._moId) + 'screenshot.png'
             with open(add, 'wb') as file:
                 file.write(response.content)
             append_info_log(f"成功获取ID：{target_vm._moId}({vm_name})的虚拟机截图：{add}")

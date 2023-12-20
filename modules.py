@@ -4,7 +4,7 @@ import os
 
 
 def get_configs():
-    with open(os.path.dirname(os.path.abspath(__file__)) + "\\ec_config.json", 'r') as file:
+    with open(os.path.dirname(os.path.abspath(__file__)) + "/ec_config.json", 'r') as file:
         data = json.load(file)
         return data
 
@@ -17,7 +17,7 @@ def append_info_log(data):
     log_entry = f"{current_time} |INFO| {data}\n"
 
     # 将日志信息追加到文件
-    with open(os.path.dirname(os.path.abspath(__file__)) + "\\log\\logs.txt", 'a') as log_file:
+    with open(os.path.dirname(os.path.abspath(__file__)) + "/log/logs.txt", 'a') as log_file:
         log_file.write(log_entry)
 
 
@@ -29,7 +29,7 @@ def append_error_log(data):
     log_entry = f"{current_time} |ERROR| {data}\n"
 
     # 将日志信息追加到文件
-    with open(os.path.dirname(os.path.abspath(__file__)) + "\\log\\logs.txt", 'a') as log_file:
+    with open(os.path.dirname(os.path.abspath(__file__)) + "/log/logs.txt", 'a') as log_file:
         log_file.write(log_entry)
 
 
@@ -41,5 +41,5 @@ def append_warning_log(data):
     log_entry = f"{current_time} |WARNING| {data}\n"
 
     # 将日志信息追加到文件
-    with open(os.path.dirname(os.path.abspath(__file__)) + "\\log\\logs.txt", 'a') as log_file:
+    with open(os.path.dirname(os.path.abspath(__file__)) + "/log/logs.txt", 'a') as log_file:
         log_file.write(log_entry)
