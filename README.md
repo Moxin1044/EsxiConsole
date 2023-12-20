@@ -8,12 +8,12 @@ EsxiConsole(Ex)是一款以Python为基础的Esxi控制器，我们致力于编�
 可以使用ec.py进行控制，使用方法如下：
 > 这里等待我写完ec.py进行更新~好不好❤❤❤
 
-> 命令格式： ec.py [command]
-    list   查看Esxi中虚拟机列表
-    help   呼出当前帮助
-    check  检查当前是否能正常连接ESXI服务器
-    info   检查当前连接的服务器信息
-    set    设置Esxi Host
+> 命令格式： ec.py [command]\
+    list   查看Esxi中虚拟机列表\
+    help   呼出当前帮助\
+    check  检查当前是否能正常连接ESXI服务器\
+    info   检查当前连接的服务器信息\
+    set    设置Esxi Host\
     login  登录Esxi
 
 ## 2.Python语言接入
