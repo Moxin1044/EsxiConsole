@@ -4,7 +4,7 @@ import os
 
 
 def get_configs():
-    with open(os.path.dirname(os.path.abspath(__file__)) + "\\config.json", 'r') as file:
+    with open(os.path.dirname(os.path.abspath(__file__)) + "\\ec_config.json", 'r') as file:
         data = json.load(file)
         return data
 
