@@ -8,6 +8,8 @@ from requests.auth import HTTPBasicAuth
 
 from modules import get_configs, append_info_log, append_error_log, append_warning_log
 
+from tqdm import tqdm
+
 # 禁用 SSL 证书验证
 ssl_context = ssl.create_default_context()
 ssl_context.check_hostname = False
