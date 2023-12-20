@@ -3,7 +3,9 @@ from tabulate import tabulate
 
 from api import *
 
+# 输入输出的特殊调用
 from termcolor import colored
+import getpass
 
 from modules import get_configs, append_info_log, append_error_log, append_warning_log
 
@@ -28,6 +30,9 @@ def main():
 
     if args.command == 'info':
         info_ec()
+
+    if args.command == 'login':
+        login_ec()
 
 
 def list_ec():
@@ -66,8 +71,9 @@ def info_ec():
 
 def login_ec():
     print(colored('* [Warning]: 请确保你的输入环境是安全的！这将保护你的ESXI服务器！', 'yellow'))
-    username = input("请输入用户名：")
-
+    print(colored('* [Warning]: 为了确保您的安全，输入密码不显示是正常的哦！', 'yellow'))
+    username = input("请输入ESXI用户名：")
+    password = getpass.getpass("请输入ESXI密码：")
 
 
 if __name__ == '__main__':
