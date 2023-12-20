@@ -64,5 +64,11 @@ def info_ec():
     print(message)
 
 
+def login_ec():
+    print(colored('* [Warning]: 请确保你的输入环境是安全的！这将保护你的ESXI服务器！', 'yellow'))
+    username = input("请输入用户名：")
+
+
+
 if __name__ == '__main__':
     main()
