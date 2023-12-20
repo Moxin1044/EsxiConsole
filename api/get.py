@@ -20,12 +20,15 @@ esxi_password = get_configs()['EsxiPass']
 
 
 def check_esxi_host():
-    si = SmartConnect(host=esxi_host, user=esxi_user, pwd=esxi_password, port=443, sslContext=ssl_context)
-    content = si.RetrieveContent()
-    Disconnect(si)
-    if content:
-        return True
-    return False
+    try:
+        si = SmartConnect(host=esxi_host, user=esxi_user, pwd=esxi_password, port=443, sslContext=ssl_context)
+        content = si.RetrieveContent()
+        Disconnect(si)
+        if content:
+            return True
+        return False
+    except:
+        return False
 
 
 def get_all_esxi_machines():
