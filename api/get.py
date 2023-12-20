@@ -58,7 +58,6 @@ def get_all_esxi_machines():
     return data
 
 
-
 def get_esxi_machines_screenshot(vm_name):
     # 连接到 ESXi 主机
     si = SmartConnect(host=esxi_host, user=esxi_user, pwd=esxi_password, port=443, sslContext=ssl_context)
