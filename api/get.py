@@ -47,14 +47,16 @@ def get_all_esxi_machines():
         disk_capacity_bytes = 0
         for disk in virtual_disks:
             disk_capacity_bytes += disk.capacityInBytes
+        disk_capacity_bytes = disk_capacity_bytes / (1024**3)
         # 获取磁盘大小结束 单位 Bytes
         # 打印虚拟机名称和状态
         i += 1
-        data.append({"Name": vm.name, "powerState": vm.runtime.powerState, "memoryMB": vm.config.hardware.memoryMB, "numCPU": vm.config.hardware.numCPU, "capacityInBytes": disk_capacity_bytes, "paused": vm.runtime.paused, "ipAddress": vm.guest.ipAddress, "hostName": vm.guest.hostName, "guestFullName": vm.config.guestFullName})
+        data.append({"Name": vm.name, "PowerState": vm.runtime.powerState, "Memory(MB)": vm.config.hardware.memoryMB, "CPU(num)": vm.config.hardware.numCPU, "Disk(GB)": disk_capacity_bytes, "Paused": vm.runtime.paused, "IpAddress": vm.guest.ipAddress, "HostName": vm.guest.hostName, "OsName": vm.config.guestFullName})
     # 断开连接
     Disconnect(si)
     append_info_log(f"获取ESXI中虚拟机列表：{data}")
     return data
+
 
 
 def get_esxi_machines_screenshot(vm_name):
