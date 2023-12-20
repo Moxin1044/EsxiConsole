@@ -430,6 +430,3 @@ def revert_to_snapshot(vm_name, snapshot_name):
             elif task.info.state == vim.TaskInfo.State.error:
                 append_warning_log(f"对 {vm_name} 的快照 {snapshot_name} 恢复的过程出现了 {task.info.error.msg}")
                 return False
-
-
-revert_to_snapshot("2012-1", "T1")

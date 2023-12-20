@@ -38,7 +38,7 @@ def get_all_esxi_machines():
     vm_view = content.viewManager.CreateContainerView(content.rootFolder, [vim.VirtualMachine], True)
     vms = vm_view.view
     # 遍历虚拟机列表
-    data = {}
+    data = []
     i = 0
     for vm in vms:
         # 获取磁盘大小
@@ -50,7 +50,7 @@ def get_all_esxi_machines():
         # 获取磁盘大小结束 单位 Bytes
         # 打印虚拟机名称和状态
         i += 1
-        data.update({str(i): {"Name": vm.name, "powerState": vm.runtime.powerState, "memoryMB": vm.config.hardware.memoryMB, "numCPU": vm.config.hardware.numCPU, "capacityInBytes": disk_capacity_bytes, "paused": vm.runtime.paused, "ipAddress": vm.guest.ipAddress, "hostName": vm.guest.hostName, "guestFullName": vm.config.guestFullName}})
+        data.append({"Name": vm.name, "powerState": vm.runtime.powerState, "memoryMB": vm.config.hardware.memoryMB, "numCPU": vm.config.hardware.numCPU, "capacityInBytes": disk_capacity_bytes, "paused": vm.runtime.paused, "ipAddress": vm.guest.ipAddress, "hostName": vm.guest.hostName, "guestFullName": vm.config.guestFullName})
     # 断开连接
     Disconnect(si)
     append_info_log(f"获取ESXI中虚拟机列表：{data}")
