@@ -55,6 +55,19 @@ def help_ec():
     info   检查当前连接的服务器信息
     set    设置Esxi Host
     login  登录Esxi
+    look      查看指定虚拟机的截图
+    off       关闭指定的虚拟机
+    reboot    重启指定的虚拟机
+    shutdown  关机指定的虚拟机
+    on        开启指定的虚拟机
+    reset     重置指定的虚拟机
+    suspend   挂起指定的虚拟机
+    standby   休眠指定的虚拟机
+    destroy   销毁指定的虚拟机
+    rename    改名指定的虚拟机
+    cs     拍摄指定虚拟机的快照
+    ds     删除指定虚拟机的快照
+    rs     恢复指定虚拟机的快照
     """
     print(text)
 
