@@ -38,14 +38,16 @@ def reboot_esxi_machines(vm_name):
     if target_vm:
         try:
             target_vm.RebootGuest()
+            # 断开连接
+            Disconnect(si)
             append_info_log(f"虚拟机 {vm_name} 已重启")
+            return True
         except vim.fault.ToolsUnavailable:
             append_error_log(f"虚拟机 {vm_name} 中的 VMware Tools 不可用，无法执行重启操作")
+            return False
     else:
         append_warning_log(f"无法重启 {vm_name} 虚拟机：无法找到/不存在该虚拟机。")
-
-    # 断开连接
-    Disconnect(si)
+        return False
 
 
 # 关闭虚拟机电源
@@ -70,13 +72,15 @@ def poweroff_esxi_machines(vm_name):
         try:
             target_vm.PowerOff()
             append_info_log(f"虚拟机 {vm_name} 已关闭")
+            # 断开连接
+            Disconnect(si)
+            return True
         except vim.fault.ToolsUnavailable:
             append_error_log(f"虚拟机 {vm_name} 中的 VMware Tools 不可用，无法执行关闭操作")
+            return False
     else:
         append_warning_log(f"无法关闭 {vm_name} 虚拟机：无法找到/不存在该虚拟机。")
-
-    # 断开连接
-    Disconnect(si)
+        return False
 
 
 # 关机操作
@@ -100,14 +104,16 @@ def shutdown_esxi_machines(vm_name):
     if target_vm:
         try:
             target_vm.ShutdownGuest()
+            # 断开连接
+            Disconnect(si)
             append_info_log(f"虚拟机 {vm_name} 已关机")
+            return True
         except vim.fault.ToolsUnavailable:
             append_error_log(f"虚拟机 {vm_name} 中的 VMware Tools 不可用，无法执行关机操作")
+            return False
     else:
         append_warning_log(f"无法关机 {vm_name} 虚拟机：无法找到/不存在该虚拟机。")
-
-    # 断开连接
-    Disconnect(si)
+        return False
 
 
 # 开启虚拟机电源
@@ -131,14 +137,16 @@ def poweron_esxi_machines(vm_name):
     if target_vm:
         try:
             target_vm.PowerOn()
+            # 断开连接
+            Disconnect(si)
             append_info_log(f"虚拟机 {vm_name} 已开机")
+            return True
         except vim.fault.ToolsUnavailable:
             append_error_log(f"虚拟机 {vm_name} 中的 VMware Tools 不可用，无法执行开机操作")
+            return False
     else:
         append_warning_log(f"无法开机 {vm_name} 虚拟机：无法找到/不存在该虚拟机。")
-
-    # 断开连接
-    Disconnect(si)
+        return False
 
 
 # 重置虚拟机
@@ -162,14 +170,18 @@ def reset_esxi_machines(vm_name):
     if target_vm:
         try:
             target_vm.Reset()
+            # 断开连接
+            Disconnect(si)
             append_info_log(f"虚拟机 {vm_name} 已重置")
+            return True
         except vim.fault.ToolsUnavailable:
             append_error_log(f"虚拟机 {vm_name} 中的 VMware Tools 不可用，无法执行重置操作")
+            return False
     else:
         append_warning_log(f"无法重置 {vm_name} 虚拟机：无法找到/不存在该虚拟机。")
+        return False
 
-    # 断开连接
-    Disconnect(si)
+
 
 
 # 挂起虚拟机
@@ -193,14 +205,16 @@ def suspend_esxi_machines(vm_name):
     if target_vm:
         try:
             target_vm.Suspend()
+            # 断开连接
+            Disconnect(si)
             append_info_log(f"虚拟机 {vm_name} 已挂起")
+            return True
         except vim.fault.ToolsUnavailable:
             append_error_log(f"虚拟机 {vm_name} 中的 VMware Tools 不可用，无法执行挂起操作")
+            return False
     else:
         append_warning_log(f"无法挂起 {vm_name} 虚拟机：无法找到/不存在该虚拟机。")
-
-    # 断开连接
-    Disconnect(si)
+        return False
 
 
 # 休眠虚拟机
@@ -224,14 +238,16 @@ def standby_esxi_machines(vm_name):
     if target_vm:
         try:
             target_vm.StandbyGuest()
+            # 断开连接
+            Disconnect(si)
             append_info_log(f"虚拟机 {vm_name} 已休眠")
+            return True
         except vim.fault.ToolsUnavailable:
             append_error_log(f"虚拟机 {vm_name} 中的 VMware Tools 不可用，无法执行休眠操作")
+            return False
     else:
         append_warning_log(f"无法休眠 {vm_name} 虚拟机：无法找到/不存在该虚拟机。")
-
-    # 断开连接
-    Disconnect(si)
+        return False
 
 
 # 销毁虚拟机
@@ -255,14 +271,16 @@ def destroy_esxi_machines(vm_name):
     if target_vm:
         try:
             target_vm.Destroy()
+            # 断开连接
+            Disconnect(si)
             append_info_log(f"虚拟机 {vm_name} 已销毁")
+            return True
         except vim.fault.ToolsUnavailable:
             append_error_log(f"虚拟机 {vm_name} 中的 VMware Tools 不可用，无法执行销毁操作")
+            return False
     else:
         append_warning_log(f"无法销毁 {vm_name} 虚拟机：无法找到/不存在该虚拟机。")
-
-    # 断开连接
-    Disconnect(si)
+        return False
 
 
 def rename_esxi_machines(old_vm_name, new_vm_name):
@@ -290,16 +308,17 @@ def rename_esxi_machines(old_vm_name, new_vm_name):
             while task_info.state not in [vim.TaskInfo.State.success, vim.TaskInfo.State.error]:
                 task_info = task.info
             if task_info.state == vim.TaskInfo.State.success:
+                # 断开连接
+                Disconnect(si)
                 append_info_log(f"虚拟机 {old_vm_name} 已成功重命名为 {new_vm_name}")
+                return True
             else:
                 append_error_log(f"重命名虚拟机时出现错误: {task_info.error}")
         except Exception as e:
             append_error_log(f"无法重命名虚拟机: {e}")
     else:
         append_warning_log(f"未找到名为 {old_vm_name} 的虚拟机")
-
-    # 断开连接
-    Disconnect(si)
+    return False
 
 
 # 拍摄快照
