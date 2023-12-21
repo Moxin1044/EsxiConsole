@@ -68,6 +68,7 @@ def help_ec():
     cs     拍摄指定虚拟机的快照
     ds     删除指定虚拟机的快照
     rs     恢复指定虚拟机的快照
+    log       输出日志
     """
     print(text)
 
