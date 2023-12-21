@@ -39,6 +39,48 @@ def main():
     if args.command == 'set':
         set_ec()
 
+    if args.command == 'look':
+        look_ec()
+
+    if args.command == 'off':
+        off_ec()
+
+    if args.command == 'reboot':
+        reboot_ec()
+
+    if args.command == 'shutdown':
+        look_ec()
+
+    if args.command == 'on':
+        on_ec()
+
+    if args.command == 'reset':
+        reset_ec()
+
+    if args.command == 'suspend':
+        suspend_ec()
+
+    if args.command == 'standby':
+        standby_ec()
+
+    if args.command == 'destroy':
+        destroy_ec()
+
+    if args.command == 'rename':
+        look_ec()
+
+    if args.command == 'cs':
+        look_ec()
+
+    if args.command == 'ds':
+        look_ec()
+
+    if args.command == 'rs':
+        look_ec()
+
+    if args.command == 'log':
+        look_ec()
+
 
 def list_ec():
     ec_list = get_all_esxi_machines()
@@ -111,7 +153,7 @@ def login_ec():
 
 def set_ec():
     print(colored('* [Warning]: 您正在设置的是Esxi的服务器地址，请正确填写，否则会导致失败。', 'yellow'))
-    print(colored('* [Warning]: 直接输入IP地址即可。', 'yellow'))
+    print(colored('* [INFO]: 直接输入IP地址即可。', 'blue'))
     ip = input("请输入ESXI的IP：")
     # 打开并读取JSON文件
     with open('ec_config.json', 'r') as f:
@@ -135,6 +177,98 @@ def is_valid_ip(ip):
         return True
     except ValueError:
         return False
+
+
+def look_ec():
+    name = input("输入虚拟机名称：")
+    look = get_esxi_machines_screenshot(name)
+    if look:
+        print(colored('* [Success]: 已成功获取虚拟机截图。', 'green'))
+        print(colored(f'* [Success]: 保存地址为 {look}。', 'green'))
+    else:
+        print(colored('* [Errors]: 无法获取到虚拟机截图，请查看日志确认错误！', 'red'))
+
+
+def off_ec():
+    name = input("输入虚拟机名称：")
+    look = poweroff_esxi_machines(name)
+    if look:
+        print(colored('* [Success]: 已成功关闭虚拟机电源。', 'green'))
+    else:
+        print(colored('* [Errors]: 无法关闭该机器，请查看日志确认错误！', 'red'))
+
+
+def reboot_ec():
+    name = input("输入虚拟机名称：")
+    look = reboot_esxi_machines(name)
+    if look:
+        print(colored('* [Success]: 已成功重启虚拟机。', 'green'))
+    else:
+        print(colored('* [Errors]: 无法重启该机器，请查看日志确认错误！', 'red'))
+
+
+def shutdown_ec():
+    name = input("输入虚拟机名称：")
+    look = shutdown_esxi_machines(name)
+    if look:
+        print(colored('* [Success]: 已成功关机虚拟机。', 'green'))
+    else:
+        print(colored('* [Errors]: 无法关机该机器，请查看日志确认错误！', 'red'))
+
+
+def on_ec():
+    name = input("输入虚拟机名称：")
+    look = poweron_esxi_machines(name)
+    if look:
+        print(colored('* [Success]: 已成功开启虚拟机。', 'green'))
+    else:
+        print(colored('* [Errors]: 无法开启该机器，请查看日志确认错误！', 'red'))
+
+
+def reset_ec():
+    name = input("输入虚拟机名称：")
+    look = reset_esxi_machines(name)
+    if look:
+        print(colored('* [Success]: 已成功重置虚拟机。', 'green'))
+    else:
+        print(colored('* [Errors]: 无法重置该机器，请查看日志确认错误！', 'red'))
+
+
+def suspend_ec():
+    name = input("输入虚拟机名称：")
+    look = reset_esxi_machines(name)
+    if look:
+        print(colored('* [Success]: 已成功挂起虚拟机。', 'green'))
+    else:
+        print(colored('* [Errors]: 无法挂起该机器，请查看日志确认错误！', 'red'))
+
+
+def standby_ec():
+    name = input("输入虚拟机名称：")
+    look = standby_esxi_machines(name)
+    if look:
+        print(colored('* [Success]: 已成功休眠虚拟机。', 'green'))
+    else:
+        print(colored('* [Errors]: 无法休眠该机器，请查看日志确认错误！', 'red'))
+
+
+def destroy_ec():
+    name = input("输入虚拟机名称：")
+    look = destroy_esxi_machines(name)
+    if look:
+        print(colored('* [Success]: 已成功销毁虚拟机。', 'green'))
+    else:
+        print(colored('* [Errors]: 无法销毁该机器，请查看日志确认错误！', 'red'))
+
+
+def rename_ec():
+    name = input("输入虚拟机名称：")
+    new_name = input("输入新的虚拟机名称：")
+    look = rename_esxi_machines(name, new_name)
+    if look:
+        print(colored('* [Success]: 已成功重命名虚拟机。', 'green'))
+    else:
+        print(colored('* [Errors]: 无法重命名该机器，请查看日志确认错误！', 'red'))
 
 
 if __name__ == '__main__':
