@@ -265,7 +265,7 @@ def destroy_esxi_machines(vm_name):
     Disconnect(si)
 
 
-def rename_esxi_machine(old_vm_name, new_vm_name):
+def rename_esxi_machines(old_vm_name, new_vm_name):
     # 连接到 ESXi 主机
     si = SmartConnect(host=esxi_host, user=esxi_user, pwd=esxi_password, port=443, sslContext=ssl_context)
 
