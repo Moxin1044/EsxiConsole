@@ -67,7 +67,7 @@ def main():
         destroy_ec()
 
     if args.command == 'rename':
-        look_ec()
+        rename_ec()
 
     if args.command == 'cs':
         look_ec()
