@@ -107,6 +107,7 @@ def help_ec():
     standby   休眠指定的虚拟机
     destroy   销毁指定的虚拟机
     rename    改名指定的虚拟机
+    ls     列出指定虚拟机的快照
     cs     拍摄指定虚拟机的快照
     ds     删除指定虚拟机的快照
     rs     恢复指定虚拟机的快照
